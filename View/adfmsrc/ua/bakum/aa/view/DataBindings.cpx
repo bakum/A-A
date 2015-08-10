@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.3.10.8" id="DataBindings"
+             SeparateXMLFiles="false" Package="ua.bakum.aa.view" ClientType="Generic">
+  <pageMap>
+    <page path="/home.jsf" usageId="ua_bakum_aa_view_homePageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="ua_bakum_aa_view_homePageDef" path="ua.bakum.aa.view.pageDefs.homePageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="SessionBakumEJBBean" path="ua.bakum.aa.model.session.SessionBakumEJBBean"/>
+  </dataControlUsages>
+</Application>
