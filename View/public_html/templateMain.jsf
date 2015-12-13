@@ -14,11 +14,50 @@
         <af:gridRow height="100%" id="pt_gr1">
             <af:gridCell width="100%" halign="stretch" valign="stretch" id="pt_gc1">
                 <!-- Content -->
-                <af:decorativeBox id="pt_db1" theme="dark">
+                <af:decorativeBox id="pt_db1" theme="dark" inlineStyle="background-color:#4E4E4E;" topHeight="80px">
                     <f:facet name="center">
                         <af:facetRef facetName="body"/>
                     </f:facet>
-                    <f:facet name="top"/>
+                    <f:facet name="top">
+                        <af:panelHeader text="Учет и аудит" id="pt_ph1">
+                            <f:facet name="context">
+                                <af:spacer width="10" height="10" id="pt_s1"/>
+                                <af:link text="Войти" id="pt_l1" rendered="#{!securityContext.authenticated}">
+                                    <af:showPopupBehavior popupId="pLogin" triggerType="action" align="endBefore"/>
+                                </af:link>
+                                <af:link text="Выйти" id="pt_l2" rendered="#{securityContext.authenticated}"
+                                         action="#{login.logout}"/>
+                                <af:spacer width="10" height="10" id="pt_s2"/>
+                                <af:outputFormatted value="Пользователь: #{securityContext.userName}" id="pt_of1"
+                                                    inlineStyle="color:White;"/>
+                            </f:facet>
+                            <f:facet name="menuBar">
+                                <af:navigationPane hint="buttons" id="pt_np1" var="menuInfo" value="#{root_menu}"
+                                                   disabled="#{!securityContext.authenticated}">
+                                    <f:facet name="nodeStamp">
+                                        <af:commandNavigationItem id="ni1" text="#{menuInfo.label}"
+                                                                  destination="#{menuInfo.destination}"
+                                                                  action="#{menuInfo.doAction}"/>
+                                    </f:facet>
+                                </af:navigationPane>
+                            </f:facet>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:popup childCreation="deferred" autoCancel="disabled" id="pLogin">
+                                <af:dialog id="pt_d1" title="Авторизация" dialogListener="#{login.OnLoginAction}">
+                                    <f:facet name="buttonBar"/>
+                                    <af:panelFormLayout id="pt_pfl1">
+                                        <f:facet name="footer"/>
+                                        <af:inputText label="Пользователь" id="pt_it1" required="true"
+                                                      value="#{login.username}"/>
+                                        <af:inputText label="Пароль" id="pt_it2" required="true" secret="true"
+                                                      value="#{login.password}"/>
+                                    </af:panelFormLayout>
+                                </af:dialog>
+                            </af:popup>
+                        </af:panelHeader>
+                    </f:facet>
                 </af:decorativeBox>
             </af:gridCell>
         </af:gridRow>

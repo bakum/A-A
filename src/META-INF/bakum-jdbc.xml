@@ -4,7 +4,7 @@
                   xmlns="http://xmlns.oracle.com/weblogic/jdbc-data-source">
     <name>bakum</name>
     <jdbc-driver-params>
-        <url>jdbc:oracle:thin:@192.168.0.200:1521:db11g</url>
+        <url>jdbc:oracle:thin:@127.0.0.1:1521:db11g</url>
         <driver-name>oracle.jdbc.OracleDriver</driver-name>
         <properties>
             <property>
@@ -12,7 +12,7 @@
                 <value>dba_bakum</value>
             </property>
         </properties>
-        <password-encrypted>56F9ABEB4C6997397C88B67FD84281E2</password-encrypted>
+        <password-encrypted>{AES}0HUtk5UdFA3fLwU7HS4NxV8XyG4oNUEGgITAJx2SB7U=</password-encrypted>
     </jdbc-driver-params>
     <jdbc-connection-pool-params>
         <test-table-name>SQL SELECT 1 FROM DUAL</test-table-name>

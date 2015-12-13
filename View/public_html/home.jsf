@@ -5,7 +5,17 @@
         <af:messages id="m1"/>
         <af:form id="f1">
             <af:pageTemplate viewId="/templateMain.jsf" id="pt1">
-                <f:facet name="body"/>
+                <f:facet name="body">
+                    <af:panelBorderLayout id="pbl1">
+                        <f:facet name="start"/>
+                        <f:facet name="bottom"/>
+                        <f:facet name="end"/>
+                        <f:facet name="top"/>
+                        <af:panelGroupLayout id="pgl1" halign="center" layout="horizontal">
+                            <af:image id="i1" source="/img/outsourcing-outsouring.jpg"/>
+                        </af:panelGroupLayout>
+                    </af:panelBorderLayout>
+                </f:facet>
             </af:pageTemplate>
         </af:form>
     </af:document>

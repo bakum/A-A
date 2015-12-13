@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns="http://myfaces.apache.org/trinidad/menu">
+  <itemNode id="itemNode_lab1" label="Эконом. информатика" action="adfMenu_lab1" focusViewId="/lab1"/>
+</menu>

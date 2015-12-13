@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="ru">
+    <af:document title="Эконом. информатика" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/templateMain.jsf" id="pt1">
+                <f:facet name="body">
+                    <af:panelBox text="Расчет опер. рычага" id="pb1">
+                        <f:facet name="toolbar"/>
+                        <af:panelCollection id="pc1">
+                            <f:facet name="menus"/>
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t2">
+                                    <af:button text="Обновить" id="b1" actionListener="#{inform.onRefresh}"/>
+                                    <af:button text="Сбросить" id="b2" actionListener="#{inform.onClear}"/>
+                                </af:toolbar>
+                            </f:facet>
+                            <f:facet name="statusbar"/>
+                            <af:table value="#{bindings.Inform.collectionModel}" var="row"
+                                      rows="#{bindings.Inform.rangeSize}"
+                                      emptyText="#{bindings.Inform.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                      rowBandingInterval="0"
+                                      selectedRowKeys="#{bindings.Inform.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.Inform.collectionModel.makeCurrent}"
+                                      rowSelection="single" fetchSize="#{bindings.Inform.rangeSize}" id="t1"
+                                      editingMode="clickToEdit" binding="#{inform.table}">
+                                <af:column id="c1" headerText="Продукция" width="100">
+                                    <af:inputText value="#{row.bindings.name.inputValue}"
+                                                  label="#{bindings.Inform.hints.name.label}"
+                                                  required="#{bindings.Inform.hints.name.mandatory}"
+                                                  columns="#{bindings.Inform.hints.name.displayWidth}"
+                                                  maximumLength="#{bindings.Inform.hints.name.precision}"
+                                                  shortDesc="#{bindings.Inform.hints.name.tooltip}" id="it1"
+                                                  readOnly="true">
+                                        <f:validator binding="#{row.bindings.name.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column id="c2" headerText="Объем продаж" width="100">
+                                    <af:inputText value="#{row.bindings.value.inputValue}"
+                                                  label="#{bindings.Inform.hints.value.label}"
+                                                  required="#{bindings.Inform.hints.value.mandatory}"
+                                                  columns="#{bindings.Inform.hints.value.displayWidth}"
+                                                  maximumLength="#{bindings.Inform.hints.value.precision}"
+                                                  shortDesc="#{bindings.Inform.hints.value.tooltip}" id="it2"
+                                                  autoSubmit="true" valueChangeListener="#{inform.onValueChange}"
+                                                  readOnly="true">
+                                        <f:validator binding="#{row.bindings.value.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Inform.hints.value.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column id="c6" headerText="Выручка" width="100">
+                                    <af:inputText value="#{row.bindings.viruch.inputValue}"
+                                                  label="#{bindings.Inform.hints.viruch.label}"
+                                                  required="#{bindings.Inform.hints.viruch.mandatory}"
+                                                  columns="#{bindings.Inform.hints.viruch.displayWidth}"
+                                                  maximumLength="#{bindings.Inform.hints.viruch.precision}"
+                                                  shortDesc="#{bindings.Inform.hints.viruch.tooltip}" id="it6"
+                                                  autoSubmit="true" valueChangeListener="#{inform.onValueChange}">
+                                        <f:validator binding="#{row.bindings.viruch.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Inform.hints.viruch.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column headerText="Цена единицы" id="c3" rendered="false">
+                                    <af:inputText value="#{row.bindings.price.inputValue}"
+                                                  label="#{bindings.Inform.hints.price.label}"
+                                                  required="#{bindings.Inform.hints.price.mandatory}"
+                                                  columns="#{bindings.Inform.hints.price.displayWidth}"
+                                                  maximumLength="#{bindings.Inform.hints.price.precision}"
+                                                  shortDesc="#{bindings.Inform.hints.price.tooltip}" id="it3">
+                                        <f:validator binding="#{row.bindings.price.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Inform.hints.price.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column headerText="Переменные затраты" id="c4" width="150">
+                                    <af:inputText value="#{row.bindings.varZatr.inputValue}"
+                                                  label="#{bindings.Inform.hints.varZatr.label}"
+                                                  required="#{bindings.Inform.hints.varZatr.mandatory}"
+                                                  columns="#{bindings.Inform.hints.varZatr.displayWidth}"
+                                                  maximumLength="#{bindings.Inform.hints.varZatr.precision}"
+                                                  shortDesc="#{bindings.Inform.hints.varZatr.tooltip}" id="it4"
+                                                  autoSubmit="true" valueChangeListener="#{inform.onValueChange}">
+                                        <f:validator binding="#{row.bindings.varZatr.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Inform.hints.varZatr.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column headerText="Постоянные затраты" id="c5" width="150">
+                                    <af:inputText value="#{row.bindings.constZatr.inputValue}"
+                                                  label="#{bindings.Inform.hints.constZatr.label}"
+                                                  required="#{bindings.Inform.hints.constZatr.mandatory}"
+                                                  columns="#{bindings.Inform.hints.constZatr.displayWidth}"
+                                                  maximumLength="#{bindings.Inform.hints.constZatr.precision}"
+                                                  shortDesc="#{bindings.Inform.hints.constZatr.tooltip}" id="it5"
+                                                  autoSubmit="true" valueChangeListener="#{inform.onValueChange}">
+                                        <f:validator binding="#{row.bindings.constZatr.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Inform.hints.constZatr.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column headerText="Маржинальная прибыль" id="c7" width="98">
+                                    <af:outputText value="#{row.marga}"
+                                                   shortDesc="#{bindings.Inform.hints.marga.tooltip}" id="ot1">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Inform.hints.marga.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                                <af:column id="c8" headerText="Прибыль" width="102">
+                                    <af:outputText value="#{row.profit}"
+                                                   shortDesc="#{bindings.Inform.hints.profit.tooltip}" id="ot2">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Inform.hints.profit.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                                <af:column id="c9" headerText="О.Р." width="100">
+                                    <af:outputText value="#{row.oper}" shortDesc="#{bindings.Inform.hints.oper.tooltip}"
+                                                   id="ot3">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Inform.hints.oper.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                            </af:table>
+                        </af:panelCollection>
+                    </af:panelBox>
+                </f:facet>
+            </af:pageTemplate>
+        </af:form>
+    </af:document>
+</f:view>

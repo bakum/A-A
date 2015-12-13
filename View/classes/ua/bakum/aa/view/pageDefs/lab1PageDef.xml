@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.23.11" id="lab1PageDef"
+                Package="ua.bakum.aa.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <methodIterator Binds="findAllInform.result" DataControl="Statistics" RangeSize="25"
+                    BeanClass="ua.bakum.aa.view.inform.Inform" id="findAllInformIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="findAllInform" RequiresUpdateModel="true" Action="invokeMethod" MethodName="findAllInform"
+                  IsViewObjectMethod="false" DataControl="Statistics" InstanceName="data.Statistics.dataProvider"
+                  ReturnName="data.Statistics.methodResults.findAllInform_Statistics_dataProvider_findAllInform_result"/>
+    <tree IterBinding="findAllInformIterator" id="Inform">
+      <nodeDefinition DefName="ua.bakum.aa.view.inform.Inform" Name="Inform0">
+        <AttrNames>
+          <Item Value="constZatr"/>
+          <Item Value="marga"/>
+          <Item Value="name"/>
+          <Item Value="oper"/>
+          <Item Value="price"/>
+          <Item Value="profit"/>
+          <Item Value="value"/>
+          <Item Value="varZatr"/>
+          <Item Value="viruch"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>
